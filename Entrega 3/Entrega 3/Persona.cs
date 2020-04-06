@@ -6,27 +6,13 @@ namespace Entrega_3
 {
     class Persona
     {
-        private string rut;
-        private string name;
-        private string lastname;
-        private string nation;
-        private string date;
-        private string altura;
-        public Persona(string rut, string name, string lastname, string nation, string date, string altura)
-        {
-            this.rut = rut;
-            this.name = name;
-            this.lastname = lastname;
-            this.nation = nation;
-            this.date = date;
-            this.altura = altura;
-        }
+        public string prut { get; set; }
+        public string pname { get; set; }
+        public string plastname { get; set; }
+        public string pnationality { get; set; }
+        public string pbithday { get; set; }
+        public int psueldo { get; set; }
 
-        public string retornaNombre()
-        {
-            return "rut: " + rut + " nombre: " + name + " apellido: " + lastname + " Nacion: " + nation + " Fecha nacimiento: " + date + " Altura: " + altura;
-
-        }
 
     }
 }
