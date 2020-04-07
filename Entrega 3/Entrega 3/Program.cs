@@ -22,9 +22,9 @@ namespace Entrega_3
             int pstock;
             string compra;
             int sueldo;
-            string n_cajero;
+            string rut_cliente;
             int z = 0;
-            
+            int tra;
 
             List<Persona> jefe = new List<Persona>();
             List<Persona> cajeros = new List<Persona>();
@@ -35,14 +35,17 @@ namespace Entrega_3
             List<string> comprado = new List<string>();
             List<int> total = new List<int>();
 
+            Console.WriteLine("Bienvenido al supermercado");
+            Console.WriteLine("Elija una opcion");
             Console.WriteLine("1) Crear trabajadores");
             Console.WriteLine("2) Crear un producto");
             Console.WriteLine("3) Comprar");
             Console.WriteLine("4) Crear un cliente");
-            Console.WriteLine("5) Salir");
+            Console.WriteLine("5) Ver trabajadores o clientes");
+            Console.WriteLine("6) Salir");
             Console.WriteLine("¿Que quiere hacer? ");
             hacer = Convert.ToInt32(Console.ReadLine());
-            while (hacer == 1 || hacer == 2 || hacer == 3 || hacer ==4)
+            while (hacer == 1 || hacer == 2 || hacer == 3 || hacer ==4 || hacer ==5)
             {
                 if (hacer == 1)
                 {
@@ -174,42 +177,85 @@ namespace Entrega_3
                     products.Add(ee);
                 }
 
+                
+
                 else if (hacer == 3)
                 {
-                    Console.WriteLine("Ingrese nombre del cajero que desea ir : ");
-                    n_cajero = Console.ReadLine();
-                    Console.WriteLine("");
-                    Console.WriteLine("Productos: ");
-                    foreach (Producto c in products)
-                    {      
-                        Console.WriteLine("Nombre: "+c.ppname+" Marca: "+c.ppmarca+" Precio: "+c.ppprecio+" Stock: "+c.ppstock);
-                    }
-                    Console.WriteLine("Que desea comprar (escribir producto)");
-                    compra = Console.ReadLine();
-                    foreach (Producto c in products)
+                    Console.WriteLine("Ingrese rut del cliente con el cual desea comprar : ");
+                    rut_cliente = Console.ReadLine();
+                    foreach (Persona c in clientes)
                     {
-                        if (compra == c.ppname)
+                        if (rut_cliente == c.prut)
                         {
-                            if (c.ppstock <= 0)
+                            int pr = 1;
+                            while (pr == 1)
                             {
-                                Console.WriteLine("No quedan productos");
+
+
+                                Console.WriteLine("Productos:");
+                                foreach (Producto ii in products)
+                                {
+                                    Console.WriteLine("Nombre: " + ii.ppname + " Marca: " + ii.ppmarca + " Precio: " + ii.ppprecio + " Stock: " + ii.ppstock);
+                                }
+                                Console.WriteLine("Que desea comprar (escribir producto)");
+                                compra = Console.ReadLine();
+                                foreach (Producto w in products)
+                                {
+                                    if (compra == w.ppname)
+                                    {
+                                        if (w.ppstock <= 0)
+                                        {
+                                            Console.WriteLine("No quedan productos");
+                                        }
+                                        else
+                                        {
+                                            comprado.Add(compra);
+                                            total.Add(w.ppprecio);
+                                            Console.WriteLine(w.ppprecio);
+                                            w.ppstock--;
+                                        }
+
+
+                                    }
+                                }
+                                Console.WriteLine("¿Quiere seguir comprando?");
+                                Console.WriteLine("1) Si");
+                                Console.WriteLine("2) NO");
+                                pr = Convert.ToInt32(Console.ReadLine());
+                                
+                                if (pr == 2)
+                                {
+                                    Console.WriteLine("Boleta:");
+                                    while (x < comprado.Count)
+                                    {
+                                        Console.WriteLine("Nombre producto: " + comprado[x] + "   Coste del producto: " + total[x]);
+                                        x++;
+                                    }
+                                    int totaal = 0;
+                                    while (z < total.Count)
+                                    {
+                                        totaal = totaal + total[z];
+                                        z++;
+                                    }
+                                    Console.WriteLine(c.pname + " " + c.plastname);
+                                    Console.WriteLine("Tiene que pagar: " + totaal);
+                                    Console.WriteLine(DateTime.Now.ToString("h:mm:ss"));
+                                    break;
+                                }
+                                break;  
+                                
                             }
-                            else
-                            {
-                                comprado.Add(compra);
-                                total.Add(c.ppprecio);
-                                Console.WriteLine(c.ppprecio);
-                                c.ppstock--;
-                            }
-                           
-                            
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Rut no valido");
                         }
                     }
                 }
 
                 else if (hacer == 4)
-                {
-                    /*
+                { 
                     Console.WriteLine("Ingrese datos del cliente");
                     Console.WriteLine("Ingerese su rut: ");
                     rut = Console.ReadLine();
@@ -222,12 +268,67 @@ namespace Entrega_3
                     Console.WriteLine("Nacimiento: ");
                     date = Console.ReadLine();
                     Console.WriteLine("");
-                    Console.WriteLine("Cuantos cajeros desea hacer (Mayor o igual a 1): ");
-                    cantidad = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine("");
-                    Persona client = new Persona(rut, name, lastname, nation, date);
-                    clientes.Add(client.retornaNombre());
-                    */
+                    Persona client = new Persona()
+                    {
+                        prut = rut,
+                        pname = name,
+                        plastname = lastname,
+                        pnationality = nation,
+                        pbithday = date
+                    };
+                    clientes.Add(client);
+
+                }
+                else if (hacer == 5)
+                {
+                    Console.WriteLine("¿Que Trabajador/Cliente quieres ver?");
+                    Console.WriteLine("1) Jefes");
+                    Console.WriteLine("2) Cajeros");
+                    Console.WriteLine("3) Supervisores");
+                    Console.WriteLine("4) Auxiliares");
+                    Console.WriteLine("5) Clientes");
+                    tra = Convert.ToInt32(Console.ReadLine());
+                    int q = 0;
+                    if (tra == 1)
+                    {
+                        while (q < jefe.Count)
+                        {
+                            Console.WriteLine(jefe[q]);
+                            q++;
+                        }
+                    }
+                    else if (tra == 2)
+                    {
+                        while (q < cajeros.Count)
+                        {
+                            Console.WriteLine(cajeros[q]);
+                            q++;
+                        }
+                    }
+                    else if (tra ==3)
+                    {
+                        while  (q < supervisor.Count)
+                        {
+                            Console.WriteLine(supervisor[q]);
+                            q++;
+                        }
+                    }
+                    else if (tra == 4)
+                    {
+                        while (q < auxiliar.Count)
+                        {
+                            Console.WriteLine(auxiliar[q]);
+                            q++;
+                        }
+                    }
+                    else
+                    {
+                        while (q < clientes.Count)
+                        {
+                            Console.WriteLine(clientes[q]);
+                            q++;
+                        }
+                    }
                 }
                 Console.WriteLine("");
                 Console.WriteLine("¿Que quiere hacer?");
@@ -235,23 +336,17 @@ namespace Entrega_3
                 Console.WriteLine("2) Crear un producto");
                 Console.WriteLine("3) Comprar");
                 Console.WriteLine("4) Crear un cliente");
-                Console.WriteLine("5) Salir");
+                Console.WriteLine("5) Ver trabajadores o clientes");
+                Console.WriteLine("6) Salir");
                 Console.WriteLine("¿Que quiere hacer? ");
                 hacer = Convert.ToInt32(Console.ReadLine());
             }
-            Console.WriteLine("Boleta:");
-            while (x < comprado.Count)
-            {
-                Console.WriteLine("Nombre producto: "+comprado[x]+"   Coste del producto: "+total[x]);
-                x++;
-            }
-            int totaal = 0;
-            while (z < total.Count)
-            {
-                totaal = totaal + total[z];
-                z++;
-            }
-            Console.WriteLine("Tiene que pagar: " + totaal);
+
+
+
+
+
+            
         }
 
 
