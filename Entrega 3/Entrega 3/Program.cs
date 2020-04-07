@@ -35,7 +35,7 @@ namespace Entrega_3
             List<string> comprado = new List<string>();
             List<int> total = new List<int>();
 
-            Console.WriteLine("Bienvenido al supermercado");
+            Console.WriteLine("Bienvenido al supermercado Kani");
             Console.WriteLine("Elija una opcion");
             Console.WriteLine("1) Crear trabajadores");
             Console.WriteLine("2) Crear un producto");
@@ -47,40 +47,19 @@ namespace Entrega_3
             hacer = Convert.ToInt32(Console.ReadLine());
             while (hacer == 1 || hacer == 2 || hacer == 3 || hacer ==4 || hacer ==5)
             {
+                int crear;
                 if (hacer == 1)
                 {
-
-                    Console.WriteLine("ingrese datos del jefe");
-                    Console.WriteLine("Ingerese su rut: ");
-                    rut = Console.ReadLine();
-                    Console.WriteLine("Ingrese su nombre: ");
-                    name = Console.ReadLine();
-                    Console.WriteLine("Apellido: ");
-                    lastname = Console.ReadLine();
-                    Console.WriteLine("Nacionalidad: ");
-                    nation = Console.ReadLine();
-                    Console.WriteLine("Nacimiento: ");
-                    date = Console.ReadLine();
-                    Console.WriteLine("Sueldo: ");
-                    sueldo = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine("");
-                    Persona boss = new Persona()
+                    
+                    Console.WriteLine("¿Que trabajador desea crear?");
+                    Console.WriteLine("1) Jefes");
+                    Console.WriteLine("2) Cajeros");
+                    Console.WriteLine("3) Supervisores");
+                    Console.WriteLine("4) Auxiliares");
+                    crear = Convert.ToInt32(Console.ReadLine());
+                    if (crear == 1)
                     {
-                        prut = rut,
-                        pname = name,
-                        plastname = lastname,
-                        pnationality = nation,
-                        pbithday = date,
-                        psueldo = sueldo
-                    };
-                    jefe.Add(boss);
-                    Console.WriteLine("Cuantos cajeros desea crear (Mayor o igual a 1): ");
-                    cantidad = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine("");
-                    int i = 1;
-                    while (i <= cantidad)
-                    {
-                        Console.WriteLine("Ingrese datos del cajero " + i);
+                        Console.WriteLine("ingrese datos del jefe");
                         Console.WriteLine("Ingerese su rut: ");
                         rut = Console.ReadLine();
                         Console.WriteLine("Ingrese su nombre: ");
@@ -94,7 +73,7 @@ namespace Entrega_3
                         Console.WriteLine("Sueldo: ");
                         sueldo = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("");
-                        Persona caje = new Persona()
+                        Persona boss = new Persona()
                         {
                             prut = rut,
                             pname = name,
@@ -103,59 +82,102 @@ namespace Entrega_3
                             pbithday = date,
                             psueldo = sueldo
                         };
-                        cajeros.Add(caje);
+                        jefe.Add(boss);
 
-                        i++;
                     }
-                    Console.WriteLine("Ingrese datos del supervisor");
-                    Console.WriteLine("Ingerese su rut: ");
-                    rut = Console.ReadLine();
-                    Console.WriteLine("Ingrese su nombre: ");
-                    name = Console.ReadLine();
-                    Console.WriteLine("Apellido: ");
-                    lastname = Console.ReadLine();
-                    Console.WriteLine("Nacionalidad: ");
-                    nation = Console.ReadLine();
-                    Console.WriteLine("Nacimiento: ");
-                    date = Console.ReadLine();
-                    Console.WriteLine("Sueldo: ");
-                    sueldo = Convert.ToInt32(Console.ReadLine());
-                    Persona super = new Persona()
+
+                    else if (crear == 2)
                     {
-                        prut = rut,
-                        pname = name,
-                        plastname = lastname,
-                        pnationality = nation,
-                        pbithday = date,
-                        psueldo = sueldo
-                    };
-                    supervisor.Add(super);
+                        Console.WriteLine("Cuantos cajeros desea crear (Mayor o igual a 1): ");
+                        cantidad = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("");
+                        int i = 1;
+                        while (i <= cantidad)
+                        {
+                            Console.WriteLine("Ingrese datos del cajero " + i);
+                            Console.WriteLine("Ingerese su rut: ");
+                            rut = Console.ReadLine();
+                            Console.WriteLine("Ingrese su nombre: ");
+                            name = Console.ReadLine();
+                            Console.WriteLine("Apellido: ");
+                            lastname = Console.ReadLine();
+                            Console.WriteLine("Nacionalidad: ");
+                            nation = Console.ReadLine();
+                            Console.WriteLine("Nacimiento: ");
+                            date = Console.ReadLine();
+                            Console.WriteLine("Sueldo: ");
+                            sueldo = Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine("");
+                            Persona caje = new Persona()
+                            {
+                                prut = rut,
+                                pname = name,
+                                plastname = lastname,
+                                pnationality = nation,
+                                pbithday = date,
+                                psueldo = sueldo
+                            };
+                            cajeros.Add(caje);
 
-                    
-                    Console.WriteLine("");
-                    Console.WriteLine("Ingrese datos del Auxiliar");
-                    Console.WriteLine("Ingerese su rut: ");
-                    rut = Console.ReadLine();
-                    Console.WriteLine("Ingrese su nombre: ");
-                    name = Console.ReadLine();
-                    Console.WriteLine("Apellido: ");
-                    lastname = Console.ReadLine();
-                    Console.WriteLine("Nacionalidad: ");
-                    nation = Console.ReadLine();
-                    Console.WriteLine("Nacimiento: ");
-                    date = Console.ReadLine();
-                    Persona aux = new Persona()
+                            i++;
+                        }
+
+                    }
+                    else if (crear == 3)
                     {
-                        prut = rut,
-                        pname = name,
-                        plastname = lastname,
-                        pnationality = nation,
-                        pbithday = date,
-                        psueldo = sueldo
-                    };
-                    auxiliar.Add(aux);
+                        Console.WriteLine("Ingrese datos del supervisor");
+                        Console.WriteLine("Ingerese su rut: ");
+                        rut = Console.ReadLine();
+                        Console.WriteLine("Ingrese su nombre: ");
+                        name = Console.ReadLine();
+                        Console.WriteLine("Apellido: ");
+                        lastname = Console.ReadLine();
+                        Console.WriteLine("Nacionalidad: ");
+                        nation = Console.ReadLine();
+                        Console.WriteLine("Nacimiento: ");
+                        date = Console.ReadLine();
+                        Console.WriteLine("Sueldo: ");
+                        sueldo = Convert.ToInt32(Console.ReadLine());
+                        Persona super = new Persona()
+                        {
+                            prut = rut,
+                            pname = name,
+                            plastname = lastname,
+                            pnationality = nation,
+                            pbithday = date,
+                            psueldo = sueldo
+                        };
+                        supervisor.Add(super);
 
+                    }
+                    else if (crear == 4)
+                    {
+                        Console.WriteLine("");
+                        Console.WriteLine("Ingrese datos del Auxiliar");
+                        Console.WriteLine("Ingerese su rut: ");
+                        rut = Console.ReadLine();
+                        Console.WriteLine("Ingrese su nombre: ");
+                        name = Console.ReadLine();
+                        Console.WriteLine("Apellido: ");
+                        lastname = Console.ReadLine();
+                        Console.WriteLine("Nacionalidad: ");
+                        nation = Console.ReadLine();
+                        Console.WriteLine("Nacimiento: ");
+                        date = Console.ReadLine();
+                        Console.WriteLine("Sueldo: ");
+                        sueldo = Convert.ToInt32(Console.ReadLine());
+                        Persona aux = new Persona()
+                        {
+                            prut = rut,
+                            pname = name,
+                            plastname = lastname,
+                            pnationality = nation,
+                            pbithday = date,
+                            psueldo = sueldo
+                        };
+                        auxiliar.Add(aux);
 
+                    }
                 }
                 else if (hacer == 2)
                 {
@@ -176,9 +198,6 @@ namespace Entrega_3
                     };
                     products.Add(ee);
                 }
-
-                
-
                 else if (hacer == 3)
                 {
                     Console.WriteLine("Ingrese rut del cliente con el cual desea comprar : ");
@@ -253,7 +272,6 @@ namespace Entrega_3
                         }
                     }
                 }
-
                 else if (hacer == 4)
                 { 
                     Console.WriteLine("Ingrese datos del cliente");
@@ -331,7 +349,7 @@ namespace Entrega_3
                     }
                 }
                 Console.WriteLine("");
-                Console.WriteLine("¿Que quiere hacer?");
+                Console.WriteLine("Elija una opcion");
                 Console.WriteLine("1) Crear un trabajador");
                 Console.WriteLine("2) Crear un producto");
                 Console.WriteLine("3) Comprar");
