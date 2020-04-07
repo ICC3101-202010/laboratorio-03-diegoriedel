@@ -35,7 +35,7 @@ namespace Entrega_3
             List<string> comprado = new List<string>();
             List<int> total = new List<int>();
 
-            Console.WriteLine("Bienvenido al supermercado Kani");
+            Console.WriteLine("Bienvenido al supermercado Lider");
             Console.WriteLine("Elija una opcion");
             Console.WriteLine("1) Crear trabajadores");
             Console.WriteLine("2) Crear un producto");
@@ -259,9 +259,7 @@ namespace Entrega_3
                                     Console.WriteLine(c.pname + " " + c.plastname);
                                     Console.WriteLine("Tiene que pagar: " + totaal);
                                     Console.WriteLine(DateTime.Now.ToString("Hora: "+"h:mm:ss"));
-                                    Random rnd = new Random();
-                                    int lanzar = rnd.Next(0, cajeros.Count);
-                                    Console.WriteLine("Usted fue atendido por: " + cajeros[lanzar]);
+                                    Console.WriteLine("Usted fue atendido por: " );
                                     break;
                                 }
                                 
@@ -312,43 +310,39 @@ namespace Entrega_3
                     tra = Convert.ToInt32(Console.ReadLine());
                     int q = 0;
                     if (tra == 1)
-                    {
-                        while (q < jefe.Count)
+                    { 
+                        foreach (Persona ff in jefe)
                         {
-                            Console.WriteLine(jefe[q]);
-                            q++;
+                            Console.WriteLine("Rut: " + ff.prut + " Nombre: " + ff.pname + "  Apellido: " + ff.plastname + " Nacionalidad: " + ff.pnationality + " Sueldo: " + ff.psueldo);
                         }
+                        
                     }
                     else if (tra == 2)
                     {
-                        while (q < cajeros.Count)
+                        foreach (Persona ff in cajeros)
                         {
-                            Console.WriteLine(cajeros[q]);
-                            q++;
+                            Console.WriteLine("Rut: " + ff.prut + " Nombre: " + ff.pname + "  Apellido: " + ff.plastname + " Nacionalidad: " + ff.pnationality + " Sueldo: " + ff.psueldo);
                         }
                     }
                     else if (tra ==3)
                     {
-                        while  (q < supervisor.Count)
+                        foreach (Persona ff in supervisor)
                         {
-                            Console.WriteLine(supervisor[q]);
-                            q++;
+                            Console.WriteLine("Rut: " + ff.prut + " Nombre: " + ff.pname + "  Apellido: " + ff.plastname + " Nacionalidad: " + ff.pnationality + " Sueldo: " + ff.psueldo);
                         }
                     }
                     else if (tra == 4)
                     {
-                        while (q < auxiliar.Count)
+                        foreach (Persona ff in auxiliar)
                         {
-                            Console.WriteLine(auxiliar[q]);
-                            q++;
+                            Console.WriteLine("Rut: " + ff.prut + " Nombre: " + ff.pname + "  Apellido: " + ff.plastname + " Nacionalidad: " + ff.pnationality + " Sueldo: " + ff.psueldo);
                         }
                     }
                     else
                     {
-                        while (q < clientes.Count)
+                        foreach (Persona ff in clientes)
                         {
-                            Console.WriteLine(clientes[q]);
-                            q++;
+                            Console.WriteLine("Rut: " + ff.prut + " Nombre: " + ff.pname + "  Apellido: " + ff.plastname + " Nacionalidad: " + ff.pnationality);
                         }
                     }
                 }
