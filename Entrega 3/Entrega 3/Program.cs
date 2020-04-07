@@ -22,6 +22,8 @@ namespace Entrega_3
             int pstock;
             string compra;
             int sueldo;
+            string n_cajero;
+            int z = 0;
             
 
             List<Persona> jefe = new List<Persona>();
@@ -126,7 +128,7 @@ namespace Entrega_3
                     };
                     supervisor.Add(super);
 
-                    /*
+                    
                     Console.WriteLine("");
                     Console.WriteLine("Ingrese datos del Auxiliar");
                     Console.WriteLine("Ingerese su rut: ");
@@ -139,9 +141,17 @@ namespace Entrega_3
                     nation = Console.ReadLine();
                     Console.WriteLine("Nacimiento: ");
                     date = Console.ReadLine();
-                    Persona aux = new Persona(rut, name, lastname, nation, date);
-                    auxiliar.Add(aux.retornaNombre());
-                    */
+                    Persona aux = new Persona()
+                    {
+                        prut = rut,
+                        pname = name,
+                        plastname = lastname,
+                        pnationality = nation,
+                        pbithday = date,
+                        psueldo = sueldo
+                    };
+                    auxiliar.Add(aux);
+
 
                 }
                 else if (hacer == 2)
@@ -166,9 +176,13 @@ namespace Entrega_3
 
                 else if (hacer == 3)
                 {
+                    Console.WriteLine("Ingrese nombre del cajero que desea ir : ");
+                    n_cajero = Console.ReadLine();
+                    Console.WriteLine("");
+                    Console.WriteLine("Productos: ");
                     foreach (Producto c in products)
-                    {
-                        Console.WriteLine("Producto: "+c.ppname+" Marca: "+c.ppmarca+" Precio: "+c.ppprecio+" Stock: "+c.ppstock);
+                    {      
+                        Console.WriteLine("Nombre: "+c.ppname+" Marca: "+c.ppmarca+" Precio: "+c.ppprecio+" Stock: "+c.ppstock);
                     }
                     Console.WriteLine("Que desea comprar (escribir producto)");
                     compra = Console.ReadLine();
@@ -176,11 +190,21 @@ namespace Entrega_3
                     {
                         if (compra == c.ppname)
                         {
-                            comprado.Add(compra);
-                            total.Add(c.ppprecio);
+                            if (c.ppstock <= 0)
+                            {
+                                Console.WriteLine("No quedan productos");
+                            }
+                            else
+                            {
+                                comprado.Add(compra);
+                                total.Add(c.ppprecio);
+                                Console.WriteLine(c.ppprecio);
+                                c.ppstock--;
+                            }
+                           
+                            
                         }
                     }
-                    /*cuando entro a comprar*/
                 }
 
                 else if (hacer == 4)
@@ -215,16 +239,17 @@ namespace Entrega_3
                 Console.WriteLine("¿Que quiere hacer? ");
                 hacer = Convert.ToInt32(Console.ReadLine());
             }
+            Console.WriteLine("Boleta:");
             while (x < comprado.Count)
             {
-                Console.WriteLine(comprado[x]);
+                Console.WriteLine("Nombre producto: "+comprado[x]+"   Coste del producto: "+total[x]);
                 x++;
             }
             int totaal = 0;
-            while (x < total.Count)
+            while (z < total.Count)
             {
-                totaal = totaal + total[x];
-                x++;
+                totaal = totaal + total[z];
+                z++;
             }
             Console.WriteLine("Tiene que pagar: " + totaal);
         }
