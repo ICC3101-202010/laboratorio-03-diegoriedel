@@ -258,10 +258,13 @@ namespace Entrega_3
                                     }
                                     Console.WriteLine(c.pname + " " + c.plastname);
                                     Console.WriteLine("Tiene que pagar: " + totaal);
-                                    Console.WriteLine(DateTime.Now.ToString("h:mm:ss"));
+                                    Console.WriteLine(DateTime.Now.ToString("Hora: "+"h:mm:ss"));
+                                    Random rnd = new Random();
+                                    int lanzar = rnd.Next(0, cajeros.Count);
+                                    Console.WriteLine("Usted fue atendido por: " + cajeros[lanzar]);
                                     break;
                                 }
-                                break;  
+                                
                                 
                             }
                             break;
@@ -295,6 +298,7 @@ namespace Entrega_3
                         pbithday = date
                     };
                     clientes.Add(client);
+                    
 
                 }
                 else if (hacer == 5)
